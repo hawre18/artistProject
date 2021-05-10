@@ -15,7 +15,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles=Article::latest()->paginate(10);
+        return view('Admin.articles.index',compact('articles'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.articles.create');
     }
 
     /**
