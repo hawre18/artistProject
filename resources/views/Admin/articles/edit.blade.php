@@ -1,4 +1,13 @@
 @extends('Admin.master')
+@section('ckeditor')
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('body' ,{
+            filebrowserUploadUrl : '/admin/panel/upload-image',
+            filebrowserImageUploadUrl :  '/admin/panel/upload-image'
+        });
+    </script>
+@endsection
 @section('content')
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="card-header">

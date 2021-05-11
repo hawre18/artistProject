@@ -27,9 +27,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/admin/aboutme">
                             <span data-feather="shopping-cart"></span>
-                            Products
+                            درباره ما
                         </a>
                     </li>
                     <li class="nav-item">
