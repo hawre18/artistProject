@@ -24,11 +24,10 @@
                         <td>{{$article->viewCount}}</td>
                         <td>{{$article->commentCount}}</td>
                         <td>
-                            <form action="{{route('articles.destroy' . ['id'=>$article->id])}}" method="post">
+                            <form action="{{route('articles.destroy' ,$article->id)}}" method="post">
                                 {{method_field('delete')}}
-                                {{csrf_token()}}
                                 <dev class="btn-group btn-grop-xs">
-                                    <a class="btn btn-primary" href="{{route('articles.edit'.['id'=>$article->id])}}">ویرایش</a>
+                                    <a class="btn btn-primary" href="{{route('articles.edit' , $article->id)}}">ویرایش</a>
                                     <button type="submit" class="btn btn-danger">حذف</button>
                                 </dev>
                             </form>

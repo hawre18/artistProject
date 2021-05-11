@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use App\User;
 
-class ArticleController extends Controller
+class ArticleController extends AdminController
 {
     /**
      * Display a listing of the resource.
@@ -35,9 +37,14 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        //
+
+        auth()->loginUsingId(1);
+        $imagesUrl = $this->uploadImages($request->file('images'));
+        auth()->user()->article()->create(array_merge($request->all() , [ 'images' => $imagesUrl]));
+
+        return redirect(route('articles.index'));
     }
 
     /**
@@ -59,7 +66,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('Admin.articles.edit' , compact('article'));
     }
 
     /**
@@ -69,9 +76,23 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
-        //
+        $file = $request->file('images');
+        $inputs = $request->all();
+
+        if($file) {
+            $inputs['images'] = $this->uploadImages($request->file('images'));
+        } else {
+            $inputs['images'] = $article->images;
+            $inputs['images']['thumb'] = $inputs['imagesThumb'];
+
+        }
+
+        unset($inputs['imagesThumb']);
+        $article->update($inputs);
+
+        return redirect(route('articles.index'));
     }
 
     /**
@@ -82,6 +103,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect(route('articles.index'));
     }
 }

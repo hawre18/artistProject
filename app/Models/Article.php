@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+    protected $guarded=[];
+    protected $casts = [
+        'images' => 'array'
+    ];
     use sluggable;
     public function sluggable()
     {

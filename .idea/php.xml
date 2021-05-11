@@ -109,6 +109,7 @@
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/vendor/cocur/slugify" />
       <path value="$PROJECT_DIR$/vendor/cviebrock/eloquent-sluggable" />
+      <path value="$PROJECT_DIR$/vendor/intervention/image" />
     </include_path>
   </component>
   <component name="PhpUnit">

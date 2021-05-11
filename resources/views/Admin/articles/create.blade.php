@@ -6,13 +6,14 @@
         </div>
        <form class="form-horizontal" action="{{route('articles.store')}}" method="post" enctype="multipart/form-data">
            {{csrf_field()}}
+            @include('Admin.errors')
            <div class="form-group">
                <label for="title" class="control-label">عنوان مقاله</label>
                <input type="text" class="form-control" name="title" id="title" placeholder="عنوان مقاله را وارد کنید" value="{{old('title')}}">
            </div>
            <div class="form-group">
                <label for="description" class="control-label">توضیحات کوتاه</label>
-               <input type="text" class="form-control" name="description" id="description" placeholder="اتوضیحات کوتاه مقاله را وارد کنید" value="{{old('description')}}">
+               <textarea row="5" class="form-control" name="description" id="description" placeholder="اتوضیحات کوتاه مقاله را وارد کنید">{{old('description')}}</textarea>
            </div>
            <div class="form-group">
                <label for="body" class="control-label">متن مقاله</label>
@@ -20,13 +21,15 @@
            </div>
            <div class="form-group">
                <div class="col-sm-6">
-                   <label for="photoUrl" class="control-label">تصویر مقاله</label>
-                   <input type="photoUrl" class="form-control" name="photoUrl" id="photoUrl" placeholder="تصویر مقاله را انتخاب کنید" value="{{old('photoUrl')}}">
+                   <label for="images " class="control-label">تصویر مقاله</label>
+                   <input type="file" class="form-control" name="images" id="images  " placeholder="تصویر مقاله را انتخاب کنید" value="{{old('images')}}">
                </div>
            </div>
            <div class="form-group">
+               <div class="col-sm-6">
                    <label for="tags" class="control-label">تگ ها</label>
                    <input type="text" class="form-control" name="tags" id="tags" placeholder="تگ های مقاله را وارد کنید" value="{{old('tags')}}">
+               </div>
            </div>
            <div class="form-group">
                <div class="col-sm-12">
